@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout.html :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<header th:replace="layout/layout.html :: header"></header>
+
+<div class="container">
+    <br>
+    <h2>Historico de Movimientos</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Movimiento</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="entry : ${historico}">
+            <td th:text="${entry.action}"></td>
+            <td th:text="${#temporals.format(entry.timestamp, 'yyyy-MM-dd')}"></td>
+            <td th:text="${#temporals.format(entry.timestamp, 'hh:mma')}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:replace="layout/layout.html :: footer"></footer>
+</body>
+</html>

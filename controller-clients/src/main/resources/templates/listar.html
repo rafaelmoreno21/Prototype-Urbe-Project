@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout.html :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<header th:replace="layout/layout.html :: header"></header>
+
+<div class="py-4 ml-5 mr-5">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${titulo}"></div>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a th:href="@{/form}" class="btn btn-primary">Agregar Activos</a>
+                <a th:href="@{/exportarPDF}" class="btn btn-secondary">Exportar a PDF</a>
+                <a th:href="@{/historico}" class="btn btn-danger">Historico</a>
+                <a href="/transferencias" class="btn btn-success">Transferencia de Activos</a>
+                <a class="btn btn-warning" href="/departamento/form">Agregar nuevo departamento</a>
+            </h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Serial</th>
+                    <th>Etiqueta</th>
+                    <th>Fecha</th>
+                    <th>Departamento</th>
+                    <th>Costo</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="activos : ${activo}">
+                    <td th:text="${activos.concepto}"></td>
+                    <td th:text="${activos.serial}"></td>
+                    <td th:text="${activos.etiqueta}"></td>
+                    <td th:text="${activos.fecha}"></td>
+                    <td th:text="${activos.departamento.nombre}"></td>
+                    <td th:text="${activos.costo}"></td>
+                    <td><a class="btn btn-info btn-sm" th:href="@{/ver/} + ${activos.id}">Detalles</a></td>
+                    <td><a class="btn btn-warning btn-sm" th:href="@{/form/} + ${activos.id}">Editar</a></td>
+                    <td><a class="btn btn-danger btn-sm" th:href="@{/eliminar/} + ${activos.id}" onclick="return confirm('Estas seguro de eliminar el activo?');">Eliminar</a></td>
+
+                </tr>
+                </tbody>
+            </table>
+            <nav th:replace="paginator-nav.html :: paginator"></nav>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/layout.html :: footer"></footer>
+</body>
+</html>

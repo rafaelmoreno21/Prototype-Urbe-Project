@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout.html :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<header th:replace="layout/layout.html :: header"></header>
+<div class="container">
+    <h1>Transferencia de Activos</h1>
+    <form th:action="@{/transferencias}" th:object="${transferenciaDTO}"method="post" class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="form-group">
+                        <label for="idsActivos">IDs de Activos</label>
+                        <input type="text" class="form-control" th:field="*{idsActivos}" id="idsActivos" placeholder="Ingrese los IDs de los activos">
+                    </div>
+                    <div class="form-group">
+                        <label for="idDepartamentoActual">Departamento Actual</label>
+                        <input type="text" class="form-control" th:field="*{idDepartamentoActual}" id="idDepartamentoActual" placeholder="Ingrese el ID del departamento actual">
+                    </div>
+                    <div class="form-group">
+                        <label for="idNuevoDepartamento">Nuevo Departamento</label>
+                        <input type="text" class="form-control" th:field="*{idNuevoDepartamento}" id="idNuevoDepartamento" placeholder="Ingrese el ID del nuevo departamento">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha">Fecha de Transferencia</label>
+                        <input type="date" class="form-control" th:field="*{fecha}" id="fecha">
+                    </div>
+                    <div class="form-group">
+                        <label for="justificacion">Justificación</label>
+                        <textarea class="form-control" th:field="*{justificacion}" id="justificacion" rows="3" placeholder="Ingrese la justificación de la transferencia"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Transferir Activos</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<footer th:replace="layout/layout.html :: footer"></footer>
+</body>
+</html>

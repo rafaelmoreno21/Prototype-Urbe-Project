@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout.html :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<header th:replace="layout/layout.html :: header"></header>
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class="text-center" th:text="${titulo}"></h1>
+            <div class="card-body">
+                <form th:action="@{/departamento/form}" th:object="${departamento}" method="post">
+                    <input type="hidden" th:field="*{id}" th:value="${departamento.id}">
+                    <div class="form-group">
+                        <label>Nombre: </label>
+                        <input type="text" th:field="*{nombre}" class="form-control" th:errorclass="'form-control alert-danger'">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Jefe: </label>
+                        <input type="text" th:field="*{jefe}" class="form-control" th:errorclass="'form-control alert-danger'">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('jefe')}" th:errors="*{jefe}"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Cédula: </label>
+                        <input type="number" th:field="*{cedula}" class="form-control" th:errorclass="'form-control alert-danger'">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo: </label>
+                        <input type="text" th:field="*{cargo}" class="form-control" th:errorclass="'form-control alert-danger'">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('cargo')}" th:errors="*{cargo}"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Estado </label>
+                        <select class="form-control" th:field="*{estado}">
+                            <option th:value="Activo">Activo</option>
+                            <option th:value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                    <br>
+                    <input type="submit" value="Guardar" class="btn btn-primary">
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/layout.html :: footer"></footer>
+</body>
+</html>

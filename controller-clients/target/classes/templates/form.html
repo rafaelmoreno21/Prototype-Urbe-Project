@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout.html :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<header th:replace="layout/layout.html :: header"></header>
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class="text-center" th:text="${titulo}"></h1>
+            <div class="card-body">
+                <form th:action="@{/form}" th:object="${activo}"method="post">
+                    <input type="hidden" th:field="*{id}" th:value="${activo.id}">
+                <div class="form-group">
+                    <label>Nombre: </label>
+                    <input type="text" th:field="*{concepto}" class="form-control" th:errorclass="'form-control alert-danger'">
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('concepto')}" th:errors="*{concepto}"></small>
+                </div>
+                    <div class="form-group">
+                        <label>Serial: </label>
+                        <input type="text" th:field="*{serial}" class="form-control" th:errorclass="'form-control alert-danger'">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('serial')}" th:errors="*{serial}"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Etiqueta: </label>
+                        <input type="text" th:field="*{etiqueta}" class="form-control" th:errorclass="'form-control alert-danger'">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('etiqueta')}" th:errors="*{etiqueta}"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha: </label>
+                        <input type="date" th:field="*{fecha}" class="form-control" th:errorclass="'form-control alert-danger'">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Costo: </label>
+                        <input type="number" step="any" th:field="*{costo}" class="form-control" th:errorclass="'form-control alert-danger'">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('costo')}" th:errors="*{costo}"></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Departamento </label>
+                        <select class="form-control" th:field="*{departamento.id}">
+                            <option th:each="departamento : ${departamentos}" th:value="${departamento.id}" th:text="${departamento.nombre}"></option>
+                        </select>
+                    </div>
+
+                    <br>
+                    <div class="box-footer">
+                        <input type="submit" value="Guardar" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/layout.html :: footer"></footer>
+</body>
+</html>
